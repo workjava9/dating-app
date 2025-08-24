@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: datingapps
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+
+  app:
+    image: myrepo/dating-app:0.1.0
+    depends_on: [db]
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/datingapps
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      APP_JWT_SECRET: "tRMAC/vZrrSDdJQYBNqlooD7P7eq/fs8SkwCDoVU8NMxdX6nsVjA/Egjuu7NPd2d
+J3PPoYax+uRJDdVHSEV+Xg=="
+    ports:
+      - "8080:8080"

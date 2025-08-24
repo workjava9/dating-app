@@ -1,0 +1,72 @@
+### Auth: Регистрация
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "geomax@example.com",
+  "password": "secret123",
+  "name": "Geo"
+}
+
+### Auth: Логин
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "geomax@example.com",
+  "password": "secret123"
+}
+
+> {% client.global.set("auth_token", response.body.token); %}
+
+### Получить профиль по ID
+GET http://localhost:8080/api/profiles/1
+Authorization: Bearer {{auth_token}}
+
+### Обновить профиль
+PUT http://localhost:8080/api/profiles/1
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "bio": "Люблю Java и DevOps",
+  "interests": ["coding", "travel", "coffee"]
+}
+
+### Лайк (свайп вправо)
+POST http://localhost:8080/api/swipes
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "targetUserId": 2,
+  "like": true
+}
+
+### Дизлайк (свайп влево)
+POST http://localhost:8080/api/swipes
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "targetUserId": 3,
+  "like": false
+}
+
+### Получить список матчей
+GET http://localhost:8080/api/matches
+Authorization: Bearer {{auth_token}}
+
+### Отправить сообщение матчу
+POST http://localhost:8080/api/messages
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "matchId": 1,
+  "text": "Привет! Рад познакомиться."
+}
+
+### Получить сообщения по матчу
+GET http://localhost:8080/api/messages/1
+Authorization: Bearer {{auth_token}}
