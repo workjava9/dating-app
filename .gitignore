@@ -56,6 +56,10 @@ logs/
 *.log
 *.out
 *.err
+.env
+.env.*
+!.env.example
+
 
 ### Test ###
 test-output/
