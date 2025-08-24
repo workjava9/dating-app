@@ -49,6 +49,19 @@ docker run --name dating-db   -e POSTGRES_DB=datingapps   -e POSTGRES_USER=postg
 ./gradlew bootRun
 ```
 
+3) Конфигурация окружения
+
+В проекте используются `.env` файлы для настройки приложения:
+
+- `.env.example` — шаблон, хранится в репозитории.
+- `.env.dev` — для локальной разработки (не коммитится).
+- `.env.prod` — для production (не коммитится).
+
+Перед запуском создайте свой `.env.dev` или `.env.prod` на основе `.env.example`.
+
+```bash
+cp .env.example .env.dev
+````
 ---
 
 ## Быстрая проверка API
